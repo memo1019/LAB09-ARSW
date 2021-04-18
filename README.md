@@ -49,20 +49,102 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 ![](images/part1/part1-vm-3000InboudRule.png)
 
 7. La función que calcula en enésimo número de la secuencia de Fibonacci está muy mal construido y consume bastante CPU para obtener la respuesta. Usando la consola del Browser documente los tiempos de respuesta para dicho endpoint usando los siguintes valores:
-    * 1000000
-    * 1010000
-    * 1020000
-    * 1030000
-    * 1040000
-    * 1050000
-    * 1060000
-    * 1070000
-    * 1080000
-    * 1090000    
+
+   > Resultado con espacio normal:
+   > * 1000000
+   >
+   > ![](images/part1/punto7/p1.jpg)
+   >
+   > * 1010000
+   >
+   > ![](images/part1/punto7/p2.jpg)
+   >
+   > * 1020000
+   >
+   > ![](images/part1/punto7/p3.jpg)
+   >
+   > * 1030000
+   >
+   > ![](images/part1/punto7/p4.jpg)
+   >
+   > * 1040000
+   >
+   > ![](images/part1/punto7/p5.jpg)
+   >
+   > * 1050000
+   >
+   > ![](images/part1/punto7/p6.jpg)
+   >
+   > * 1060000
+   >
+   > ![](images/part1/punto7/p7.jpg)
+   >
+   > * 1070000
+   >
+   > ![](images/part1/punto7/p8.jpg)
+   >
+   > * 1080000
+   >
+   > ![](images/part1/punto7/p9.jpg)
+   >
+   > * 1090000
+   >
+   > ![](images/part1/punto7/p10.jpg)
+
+> Resultado con espacio agrandado:
+> * 1000000
+>
+> ![](images/part1/punto7/prueba1.jpg)
+>
+> * 1010000
+>
+> ![](images/part1/punto7/prueba2.jpg)
+>
+> * 1020000
+>
+> ![](images/part1/punto7/prueba3.jpg)
+>
+> * 1030000
+>
+> ![](images/part1/punto7/prueba4.jpg)
+>
+> * 1040000
+>
+> ![](images/part1/punto7/prueba5.jpg)
+>
+> * 1050000
+>
+> ![](images/part1/punto7/prueba6.jpg)
+>
+> * 1060000
+>
+> ![](images/part1/punto7/prueba7.jpg)
+>
+> * 1070000
+>
+> ![](images/part1/punto7/prueba8.jpg)
+>
+> * 1080000
+>
+> ![](images/part1/punto7/prueba9.jpg)
+>
+> * 1090000
+>
+> ![](images/part1/punto7/prueba10.jpg)
+ 
 
 8. Dírijase ahora a Azure y verifique el consumo de CPU para la VM. (Los resultados pueden tardar 5 minutos en aparecer).
 
-![Imágen 2](images/part1/part1-vm-cpu.png)
+    ![Imágen 2](images/part1/part1-vm-cpu.png)
+
+   > Revisión con espacio normal:
+   >
+   > ![](images/part1/punto8/estadistica.jpg)
+
+   > Revisión con espacio agrandado:
+   >
+   > ![](images/part1/punto8/estadistica1.jpg)
+
 
 9. Ahora usaremos Postman para simular una carga concurrente a nuestro sistema. Siga estos pasos.
     * Instale newman con el comando `npm install newman -g`. Para conocer más de Newman consulte el siguiente [enlace](https://learning.getpostman.com/docs/postman/collection-runs/command-line-integration-with-newman/).
@@ -74,30 +156,129 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10 &
     newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
     ```
+    > Resultados con espacio normal:
+    >
+    > ![](images/part1/punto9/newman1.jpg)
+    > ![](images/part1/punto9/newman2.jpg)
+    > ![](images/part1/punto9/newman3.jpg)
+    > ![](images/part1/punto9/newman4.jpg)
+    > ![](images/part1/punto9/newman5.jpg)
+   
+   > Resultados con espacio agrandado:
+   >
+   > ![](images/part1/punto9/n1.jpg)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+   > ![](images/part1/punto9/n2.jpg)
+   > ![](images/part1/punto9/n3.jpg)
+   > ![](images/part1/punto9/n4.jpg)
 
 10. La cantidad de CPU consumida es bastante grande y un conjunto considerable de peticiones concurrentes pueden hacer fallar nuestro servicio. Para solucionarlo usaremos una estrategia de Escalamiento Vertical. En Azure diríjase a la sección *size* y a continuación seleccione el tamaño `B2ms`.
 
-![Imágen 3](images/part1/part1-vm-resize.png)
+    ![Imágen 3](images/part1/part1-vm-resize.png)
 
 11. Una vez el cambio se vea reflejado, repita el paso 7, 8 y 9.
 12. Evalue el escenario de calidad asociado al requerimiento no funcional de escalabilidad y concluya si usando este modelo de escalabilidad logramos cumplirlo.
+
+    RTA//Se puede Considerar que no se cumple el requerimiento funcional debido que a pesar de haber hecho un escalamiento horizontal se siguen presentando errores al momento de realizar la ejecución con los scripts de postman.
+
+
 13. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
 
 **Preguntas**
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
+
+    > En este caso se crean cuatro recursos que son: Virtual Machine, Resource Group, Public and Private IP address.
+
 2. ¿Brevemente describa para qué sirve cada recurso?
+
+   > Virtual Machine: Es un software que simula a un computador real.
+                                                        
+                                                        
+   > Resource Group: Es un contenedor que contiene recursos relacionados para una solución de Azure. El grupo de recursos incluye aquellos recursos que desea administrar como grupo. 
+                                       
+                                       
+   > Public IP address: Las direcciones IP públicas permiten que los recursos de Internet se comuniquen de forma entrante a los recursos de Azure. Las direcciones IP públicas permiten que los recursos de Azure se comuniquen con Internet y con los servicios públicos de Azure.
+   
+   
+   > IP privada: Permiten la comunicación entre recursos en Azure tales como:
+   > * Virtual machine network interfaces
+   > * Internal load balancers (ILBs)
+   > * Application gateways
+   > * Virtual network.
+   > * Red local a través de una pasarela VPN o un circuito ExpressRoute.
+
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
+
+    > Si se cierra la conexión ssh también se terminaran los procesos que se esten ejecutando en esa conexión, por eso es necesario ejecutarlo con forever.
+    > Porque por defecto solo esta abierto el puerto 22 por lo que las conexiones desde el resto de puertos no son aceptadas
+
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
+   
+   > La función tarda tanto tiempo y tiende a ser incremental debido a la cantidad de iteraciones que se realizan sobre esta
+
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
+
+   > ![](images/part1/punto8/estadistica.jpg)
+                                                                                                               
+   > ![](images/part1/punto8/estadistica1.jpg)
+                                                                                                                                                                                                                                                                             
+   > Consume tanta CPU debido a que se tiene una implementación no eficaz la cual usa demasiados recursos para realizar
+   > muchas iteraciones.
+                                                                                                               
+                                                                                                                                                                                                                         
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
     * Si hubo fallos documentelos y explique.
+    
+   > Sin aumento de espacio:
+   
+   > ![](images/part1/punto9/newman1.jpg)
+                                                                                                                                                                            
+   > ![](images/part1/punto9/newman2.jpg)
+                                                                                                                                                                            
+   > ![](images/part1/punto9/newman3.jpg)
+                                                                                                                                                                            
+   > ![](images/part1/punto9/newman4.jpg)
+                                                                                                                                                                            
+   > ![](images/part1/punto9/newman5.jpg)
+   
+   > Se obtienen fallos de desconexión y los tiempos de ejecución varían entre 21s y 44s
+
+   > Con aumento de espacio:
+   
+   > ![](images/part1/punto9/n1.jpg) 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+   > ![](images/part1/punto9/n2.jpg)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+   > ![](images/part1/punto9/n3.jpg)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+   > ![](images/part1/punto9/n4.jpg)
+   
+   > Se siguen obteniendo fallos de desconexión aunque un poco menores y los tiempos disminuyen y varían entre 14s y 30s
+
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
+   > Se diferencian en su capacidad en memoria, uno con 0.5Gb y otro con 8Gb respectivamente, además de su gran diferencia en la CPU, ya que
+   > B2ms es el doble de B1ls, esto ocasiona que el precio por mes del B2ms sea mucho mayor que el de B1ls, adicionalmente el rendimiento
+   > que proporciona B2ms es mejor y mayor optimizado debido a las características técnicas que este posee.
+   
+   ![](images/part1/punto7/b1.jpg)
+   ![](images/part1/punto7/b2.jpg)
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+
+    > Se evidencio que el tiempo de respuesta disminuyo al aumentar la capacida, sin embargo los resultados obtenidos no mejoran drasticamente, por lo que la relación precio/beneficio no justifica el aumento de la capacidad. La aplicación sigue requiriendo una gran cantidad de procesamiento.
+
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
+
+    > Al solicitar mas capacidad el precio aumenta drasticamente.
+
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
-11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
+
+    > En términos de porcentaje hubo mejora, ya que se redujo el consumo en casi un 40%, pero en términos proporcionales, la mejora fu casi nula.
+
+11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es
+    porcentualmente mejor?
+
+    > No, debido a que se siguen presentando la misma cantidad de errores al momento de ejecutarlo.
 
 ### Parte 2 - Escalabilidad horizontal
 
@@ -185,15 +366,81 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 
 **Preguntas**
 
-* ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
+
+* ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian
+
+  > Existen 2 tipos de balanceadores de carga en Azure, el balanceador público y el balanceador privado (interno), se
+  > diferencian en que el balanceador público está hecho para dar conexiones de salida para las máquinas virtuales, mientras que
+  > el interno se utilizan para realizar el equilibrio de la carga dentro de una red virtual.
+
+* ¿Qué es SKU, qué tipos hay y en qué se diferencian?
+
+  > Representa una posibilidad para comprar Existencias (SKU) por debajo de un producto. Estos representan las diferentes formas del producto.
+
+* ¿Por qué el balanceador de carga necesita una IP pública?
+
+  > Para añadir un punto de conexión a los perfiles Traffic Manager, además que este será el punto por el cual se accederá el Front-End
+
 * ¿Cuál es el propósito del *Backend Pool*?
+
+  > El pool de backend es un componente crítico del balanceador de carga. El pool de backend define el grupo de recursos que servirá el tráfico para una regla de equilibrio de carga determinada.
+
 * ¿Cuál es el propósito del *Health Probe*?
-* ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
-* ¿Qué es una *Virtual Network*? ¿Qué es una *Subnet*? ¿Para qué sirven los *address space* y *address range*?
-* ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *zone-redundant*?
+
+  > Permitir que el, Load Balancer detecte el estado del extremo del backend. La configuración de la sonda de estado y las respuestas de la sonda determinan qué instancias del backend pool recibirán nuevos flujos.
+
+* ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es
+  importante y cómo puede afectar la escalabilidad del sistema?.
+
+  > Definir el tráfico de red atreves de las máquinas virtuales, las sesiones que este permite son sesiones sin definir
+  > persistencia o con persistencia definida, esto significa que cuando se realice una misma petition esta será redirigida
+  > al cliente original y no a uno nuevo, esto puede afectar a aplicaciones que trabajen con sesiones guardadas en memoria,
+  > o en aplicaciones sticky.
+
+* ¿Qué es una *Virtual Network*?
+
+  > Es el bloque de creación fundamental de una red privada en Azure. VNet permite muchos tipos de recursos de Azure,
+  > como Azure Virtual Machines (máquinas virtuales), para comunicarse de forma segura entre usuarios, con Internet y
+  > con las redes locales.
+
+* ¿Qué es una *Subnet*?
+
+  > Es un rango de direcciones lógicas, que se utiliza normalmente cuando se tienen redes demasiado grandes, estos son divididas en redes más pequeñas; estas se conocen como subnets
+
+* ¿Para qué sirven los *address space* y *address range*?
+
+  > Los address space son aquellas direcciones de red asignables dentro de una Vnt y los address range son las redes asignables dentro de una subnet.
+
+* ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *
+  zone-redundant*?
+
+  > Una zona de disponibilidad es una oferta de alta disponibilidad que protege sus aplicaciones y datos de los fallos
+  > del centro de datos. Las zonas de disponibilidad son ubicaciones físicas únicas dentro de una región de Azure.
+
+  > Cuando una IP es zone-redundant es aquella que replica las peticiones y los datos por medio de las Availability Zone.
+
 * ¿Cuál es el propósito del *Network Security Group*?
+
+  > Puede utilizar un grupo de seguridad de red de Azure para filtrar el tráfico de red hacia y desde los recursos de Azure
+  > en una red virtual de Azure. Un grupo de seguridad de red contiene reglas de seguridad que permiten o deniegan el tráfico
+  > de red entrante hacia, o el tráfico de red saliente desde, varios tipos de recursos de Azure. Para cada regla, puede
+  > especificar el origen y el destino, el puerto y el protocolo.
+  
 * Informe de newman 1 (Punto 2)
+   > Se puede observar que en el newman se obtienen menos errores que en la parte 1 ya que tenemos mas "capacidad" de procesamiento, adicional a esto tenemos la opción de distribuir el procesamiento en las 4 vm, en la parte 1 no era posible distribuir el procesamiento, en esta parte solo era posible aumentar la capacidad, por lo que se puede ver una mejora en este tipo de prueba.
+
+   > ![](images/part2/cuatrohilos1.jpg)
+                                                                                                                                                                                                                                                                                                                                                                                                                                  
+   > ![](images/part2/cuatrohilos2.jpg)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+   > ![](images/part2/cuatrohilos3.jpg)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+   > ![](images/part2/cuatrohilos4.jpg)
+
+
 * Presente el Diagrama de Despliegue de la solución.
+
+   > ![](images/part2/despliegue.jpg)
 
 
 
