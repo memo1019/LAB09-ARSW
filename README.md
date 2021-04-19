@@ -354,6 +354,13 @@ http://52.155.223.248/fibonacci/1
 ```
 
 2. Realice las pruebas de carga con `newman` que se realizaron en la parte 1 y haga un informe comparativo donde contraste: tiempos de respuesta, cantidad de peticiones respondidas con éxito, costos de las 2 infraestrucruras, es decir, la que desarrollamos con balanceo de carga horizontal y la que se hizo con una maquina virtual escalada.
+![](images/part2/comparacion.PNG)
+
+> Como podemos observar en peticiones aceptadas hay una gran diferencia ya que con el escalamiento vertical todas las peticiones realizadas fueron aceptadas,  mientras que en escalamiento horizontal algunas de estas fallaron, se puede ver una diferencia de tiempo de ejecucion con respecto al escalamiento horizontal lo que nos indica que el tiempo de ejecucion del programa se puede arreglar por medio del escalamiento horizontal, mientras que el manejo de peticiones con el escalamiento vertical.
+
+![](images/part2/costo_general.png)
+
+![](images/part2/costo.png)
 
 3. Agregue una 4 maquina virtual y realice las pruebas de newman, pero esta vez no lance 2 peticiones en paralelo, sino que incrementelo a 4. Haga un informe donde presente el comportamiento de la CPU de las 4 VM y explique porque la tasa de éxito de las peticiones aumento con este estilo de escalabilidad.
 
